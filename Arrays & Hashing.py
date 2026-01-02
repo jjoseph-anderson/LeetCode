@@ -28,7 +28,53 @@ class Solution:
         return False
 
 
-array1 = [1, 2, 3, 4]
-array2 = [1, 2, '#', '#']
-print(Solution().hasDuplicate(array1))
+# array1 = [1, 2, 3, 4]
+# array2 = [1, 2, '#', '#']
+# print(Solution().hasDuplicate(array1))
 
+#### 2) Valid Anagram
+
+# 2.1) brute force - sort each array
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        sort_s = sorted(s)
+        sort_t = sorted(t)
+        if sort_s == sort_t:
+            return True
+        else:
+            return False
+
+# s = "racecar"
+# t = "carrace"
+# print(Solution().isAnagram(s, t))
+
+# s = "jar"
+# t = "jam"
+# print(Solution().isAnagram(s, t))
+
+# 2.2) Optimize using hash map
+
+def isAnagram(self, s: str, t: str) -> bool:
+    if len(s) != len(t):
+        return False
+
+    map_S, map_T = {}, {}
+    # make hashmap frequency table
+    for i in range(len(s)):
+        map_S[s[i]] = 1 + map_S.get(s[i], 0)
+        map_T[t[i]] = 1 + map_T.get(t[i], 0)
+
+    return map_S == map_T
+
+# s = "racecar"
+# t = "carrace"
+# print(Solution().isAnagram(s, t))
+
+# s = "jar"
+# t = "jam"
+# print(Solution().isAnagram(s, t))
+
+s = "x"
+t = "xx"
+print(Solution().isAnagram(s, t))
