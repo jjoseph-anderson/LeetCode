@@ -1,3 +1,5 @@
+from typing import List
+from collections import defaultdict
 
 #### 1) Contains Duplicates
 
@@ -105,3 +107,36 @@ class Solution:
                 return [i, indices[diff]]
         return []
 
+#### 4) Group Anagrams
+
+# 4.1) Brute force method - sort each string and group them using hasmap O(m * nlogn) time complexity
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        anagrams = {}
+        for s in strs:
+            key = ''.join(sorted(s))
+            anagrams[key] = anagrams.get(key, []) + [s]
+
+        return list(anagrams.values())
+
+# strs = ["act","pots","tops","cat","stop","hat"]
+# print(Solution().groupAnagrams(strs))
+
+# 4.2
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        res = {} #
+
+        for s in strs:
+            count = [0] * 26 # a .. z
+
+            for c in s:
+                count[ord(c) - ord("a")] +=1
+
+            key = tuple(count)
+            res[key] = res.get(key, []) + [s]
+
+        return list(res.values())
+
+strs = ["act","pots","tops","cat","stop","hat"]
+print(Solution().groupAnagrams(strs))
