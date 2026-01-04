@@ -1,3 +1,4 @@
+from itertools import product
 from typing import List
 from collections import defaultdict
 
@@ -77,9 +78,9 @@ def isAnagram(self, s: str, t: str) -> bool:
 # t = "jam"
 # print(Solution().isAnagram(s, t))
 
-s = "x"
-t = "xx"
-print(Solution().isAnagram(s, t))
+# s = "x"
+# t = "xx"
+# print(Solution().isAnagram(s, t))
 
 #### 3) Two Sum
 
@@ -195,6 +196,48 @@ class Solution:
                 if len(out) == k:
                     return out
 
-nums = [1, 1, 1, 2, 2 ,100]
-k = 2
-print(Solution().topKFrequent(nums, k))
+# nums = [1, 1, 1, 2, 2 ,100]
+# k = 2
+# print(Solution().topKFrequent(nums, k))
+
+
+#### 6) Products of Array Except Self
+
+# 6.0) easy if you can use division operator. Find product of array and divide by each element
+# O(n^2)
+class Solution:
+    def array_product(self, nums: List[int]):
+        product = 1
+        for n in nums:
+            product *= n
+        return product
+
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        out = list()
+        prod = self.array_product(nums)
+        for i in range(len(nums)):
+            out.append(prod // nums[i])
+        return out
+
+# nums = [1,2,4,6]
+# print(Solution().productExceptSelf(nums))
+
+# 6.1) brute force - loop through array finding product using j
+# O(n^2)
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        out = []
+
+        for i in range(len(nums)):
+            prod = 1
+            for j in range(len(nums)):
+                if i == j:
+                    continue
+                prod *= nums[j]
+
+            out.append(prod)
+
+        return out
+
+# nums = [1,2,4,6]
+# print(Solution().productExceptSelf(nums))
