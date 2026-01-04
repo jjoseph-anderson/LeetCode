@@ -140,3 +140,33 @@ class Solution:
 
 strs = ["act","pots","tops","cat","stop","hat"]
 print(Solution().groupAnagrams(strs))
+
+#### 5) Top K Frequency Elements
+
+# 5.1) Brute force - puts into a hashMap frequency able and sort values then return the corresponding Key
+# Big O(n + mlogm + mk) where n = lengths of nums, m = unique numbers in hashmap
+# Becomes O(nlogn)
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        map = {}
+
+        for i in range(len(nums)):
+            map[nums[i]] = 1 + map.get(nums[i], 0)
+
+        map_keys = list(map.keys())
+        map_values = list(map.values())
+
+        if len(map_values) == 1:
+            sort_values = map_values
+
+        else:
+            sort_values = sorted(map_values)
+
+        sorted_val = sort_values[-k:]
+
+        output = []
+        for key, value in map.items():
+            if value in sorted_val:
+                output.append(key)
+
+        return output
