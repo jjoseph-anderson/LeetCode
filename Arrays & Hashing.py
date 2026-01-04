@@ -138,8 +138,8 @@ class Solution:
 
         return list(res.values())
 
-strs = ["act","pots","tops","cat","stop","hat"]
-print(Solution().groupAnagrams(strs))
+# strs = ["act","pots","tops","cat","stop","hat"]
+# print(Solution().groupAnagrams(strs))
 
 #### 5) Top K Frequency Elements
 
@@ -170,3 +170,31 @@ class Solution:
                 output.append(key)
 
         return output
+
+# nums = [1, 1, 1, 2, 2 ,100]
+# k = 2
+# print(Solution().topKFrequent(nums, k))
+
+# 5.2 - use bucket sort with i being count and values [list]
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = {}  # i
+
+        freq = [ [] for i in range(len(nums)+1) ]
+
+        for n in nums:
+            count[n] = 1 + count.get(n, 0)
+
+        for n, c in count.items():
+            freq[c].append(n)
+
+        out = []
+        for i in range(len(freq) - 1, 0, -1):
+            for n in freq[i]:
+                out.append(n)
+                if len(out) == k:
+                    return out
+
+nums = [1, 1, 1, 2, 2 ,100]
+k = 2
+print(Solution().topKFrequent(nums, k))
