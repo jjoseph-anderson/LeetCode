@@ -342,4 +342,56 @@ class Solution:
 # digits = [1,2,9, 9, 9]
 # print(Solution().plusOne(digits))
 
-##### 9)
+##### 9) Valid Palindrome
+
+# BF
+# lowercase, only keep if its an alphanumeric,
+# s = "Was it a car or a cat I saw?"
+# lowercase it => s = "was it a car or a cat i saw?"
+# only keep alphanumeric => "wasitacaroracatisaw"
+# make into list and loop through checking first and last
+# only need to do it through len//2
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s = s.lower()
+
+        sorte = []
+        for x in s:
+            if x.isalnum():
+                sorte.append(x)
+
+        for i in range(len(sorte) // 2):
+            if sorte[i] == sorte[-i - 1]:
+                continue
+            else:
+                return False
+
+        return True
+
+# s = "Was it a car or a cat I saw?"
+# print(Solution().isPalindrome(s))
+
+# using 2 pointers
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        left = 0
+        right = len(s) - 1
+
+        while left < right:
+            while left < right and s[left].isalnum() == False:
+                left += 1
+
+            while right > left and s[right].isalnum() == False:
+                right -= 1
+
+            if s[left].lower() != s[right].lower():
+                return False
+            left = left + 1
+            right = right - 1
+
+        return True
+
+
+s = "Was it a car or a cat I saw?"
+print(Solution().isPalindrome(s))
