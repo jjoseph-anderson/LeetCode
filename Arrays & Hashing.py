@@ -427,6 +427,64 @@ class Solution:
 
         return []
 
-numbers = [1,2,3,4]
-target = 3
-print(Solution().twoSum(numbers, target))
+# numbers = [1,2,3,4]
+# target = 3
+# print(Solution().twoSum(numbers, target))
+
+##### 15) 3sum
+
+# BF
+# Time O(n^3) and space O(m), m is number of triplets
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        result = set()
+        nums.sort()
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                for k in range(j + 1, len(nums)):
+                    if nums[i] + nums[j] + nums[k] == 0:
+                        tpl = [nums[i], nums[j], nums[k]]
+                        result.add(tuple(tpl))
+
+        out = []
+        for r in result:
+            out.append(list(r))
+
+        return out
+
+# nums = [-1,0,1,2,-1,-4]
+# print(Solution().threeSum(nums))
+
+# b) use two pointers
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        nums.sort()
+
+        for i in range(len(nums)):
+            if nums[i] > 0:
+                break
+
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+
+            left = i + 1
+            right = len(nums) - 1
+
+            while left < right:
+                if nums[left] + nums[right] < -nums[i]:
+                    left += 1
+                elif nums[left] + nums[right] > -nums[i]:
+                    right -= 1
+
+                else:
+                    result.append([nums[left], nums[right], nums[i]])
+                    left += 1
+                    right -= 1
+                    while nums[left] == nums[left - 1] and left < right:
+                        left += 1
+
+        return result
+
+nums = [-1,0,1,2,-1,-4]
+print(Solution().threeSum(nums))
