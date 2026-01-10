@@ -486,5 +486,23 @@ class Solution:
 
         return result
 
-nums = [-1,0,1,2,-1,-4]
-print(Solution().threeSum(nums))
+# nums = [-1,0,1,2,-1,-4]
+# print(Solution().threeSum(nums))
+
+#### 11) Container with most water
+
+# BF O(n^2)
+class Solution:
+    def maxArea(self, heights: List[int]) -> int:
+        out = []
+        for i in range(len(heights)):
+            for j in range(i+1, len(heights)):
+                h = min(heights[i], heights[j])
+                L = j - i
+
+                out.append(h*L)
+
+        return max(out)
+
+height = [1,7,2,5,4,7,3,6]
+print(Solution().maxArea(height))
