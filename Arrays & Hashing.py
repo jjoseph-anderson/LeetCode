@@ -579,5 +579,23 @@ class Solution:
 
         return output
 
-height = [0,2,0,3,1,0,1,3,2,1]
-print(Solution().trap(height))
+# height = [0,2,0,3,1,0,1,3,2,1]
+# print(Solution().trap(height))
+
+##### 121 Best Time to Buy and Sell Stock
+
+# BF
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+
+
+        out = 0
+        for i in range(len(prices)):
+            buy = prices[i]
+            for j in range(i+1, len(prices)):
+                sell = prices[j]
+                out = max(out, sell - buy)
+        return out
+
+prices = [10,1,5,6,7,1]
+print(Solution().maxProfit(prices))
