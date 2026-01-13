@@ -597,5 +597,26 @@ class Solution:
                 out = max(out, sell - buy)
         return out
 
-prices = [10,1,5,6,7,1]
-print(Solution().maxProfit(prices))
+# prices = [10,1,5,6,7,1]
+# print(Solution().maxProfit(prices))
+
+##### 3) Longest Substring Without Repeating Characters
+
+# BF Big O(n^2
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        out = 0
+
+        for i in range(len(s)):
+            seen = set()
+            for j in range(i, len(s)):
+                if s[j] in seen:
+                    break
+
+                seen.add(s[j])
+            out = max(out, len(seen))
+
+        return out
+
+s = "zxyzxyz"
+print(Solution().lengthOfLongestSubstring(s))
