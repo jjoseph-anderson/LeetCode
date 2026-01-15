@@ -19,3 +19,12 @@ def big_countries(world: pd.DataFrame) -> pd.DataFrame:
     return df
 
 print(big_countries(world))
+
+#### 1757) Recyclable and Low Fat Products
+
+def find_products(products: pd.DataFrame) -> pd.DataFrame:
+    df = products[(products.low_fats == 'Y') &(products.recyclable == 'Y')]
+
+    df = df[['product_id']]
+
+    return df
