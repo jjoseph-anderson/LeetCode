@@ -34,4 +34,20 @@ def find_products(products: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-print(find_products(products))
+# print(find_products(products))
+
+#### 183) Customers who never order
+customers = pd.DataFrame({ "id": [1, 2, 3, 4],
+                           "name": ["Joe", "Henry", "Sam", "Max"] }) # Orders table
+orders = pd.DataFrame({ "id": [1, 2], "customerId": [3, 1] })
+
+def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+    df = customers[~customers['id'].isin(orders['customerId'])]
+
+    df = df.rename(columns={"name": "Customers"})
+
+    df = df[['Customers']]
+
+    return df
+
+print(find_customers(customers, orders))
