@@ -72,4 +72,24 @@ def article_views(views: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-print(article_views(views))
+# print(article_views(views))
+
+#### 1683 Invalid Tweets
+
+data = { 'tweet_id': [1, 2],
+         'content': ['Let us Code', 'More than fifteen chars are here!'] }
+
+tweets = pd.DataFrame(data)
+
+def invalid_tweets(tweets: pd.DataFrame) -> pd.DataFrame:
+    df = tweets
+
+    for i in range(len(tweets)):
+        if len(tweets['content'][i]) <= 15:
+            df = df.drop(i)
+
+    df = df.reset_index(drop=True)
+
+    return df[['tweet_id']]
+
+print(invalid_tweets(tweets))
