@@ -125,5 +125,20 @@ def calculate_special_bonus(employees: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-print(calculate_special_bonus(employees))
+# print(calculate_special_bonus(employees))
 
+###### 1667) Fix names in a table
+
+users = pd.DataFrame({ 'user_id': [1, 2],
+                    'name': ['aLice', 'bOB'] })
+
+def fix_names(users: pd.DataFrame) -> pd.DataFrame:
+    df = users
+    df['name'] = df.name.str.lower()
+    df['name'] = df['name'].str.capitalize()
+
+    df = df.sort_values('user_id')
+
+    return df
+
+print(fix_names(users))
