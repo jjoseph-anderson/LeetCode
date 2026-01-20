@@ -141,4 +141,20 @@ def fix_names(users: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-print(fix_names(users))
+#print(fix_names(users))
+
+#### 1517) Find Users With Valid E-mails
+
+users = pd.DataFrame({ 'user_id': [1, 2, 3, 4, 5, 6, 7],
+                    'name': ['Winston', 'Jonathan', 'Annabelle', 'Sally', 'Marwan', 'David', 'Shapiro'],
+                    'mail': [ 'winston@leetcode.com', 'jonathanisgreat', 'bella-@leetcode.com',
+                              'sally.come@leetcode.com', 'quarz#2020@leetcode.com', 'david69@gmail.com',
+                              ',shapo@leetcode.com' ] })
+
+def valid_emails(users: pd.DataFrame) -> pd.DataFrame:
+    mask = users["mail"].str.match(r"^[A-Za-z][A-Za-z0-9_.-]*@leetcode\.com$")
+
+    df = users.loc[mask]
+    return df
+
+print(valid_emails(users))
