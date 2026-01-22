@@ -262,3 +262,15 @@ data = { "id": [1, 2, 3, 4, 5, 6],
          "score": [3.50, 3.65, 4.00, 3.85, 4.00, 3.65] }
 
 scores = pd.DataFrame(data)
+
+def order_scores(scores: pd.DataFrame) -> pd.DataFrame:
+    list_sort = sorted(scores['score'])
+    rank = sorted(scores['score'].rank(method='dense', ascending = False))
+
+    out = pd.DataFrame()
+    out['score'] = list_sort[::-1]
+    out['rank'] = rank
+
+    return out
+
+print(order_scores(scores))
