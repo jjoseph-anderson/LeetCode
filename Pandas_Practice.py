@@ -281,7 +281,8 @@ person = pd.DataFrame({ 'id': [1, 2, 3],
                     'email': ['john@example.com', 'bob@example.com', 'john@example.com'] })
 
 # time complexity sorting is O(nlogn) and drop duplicates is O(n)
-# hence time complexity is O(nlogn)
+# hence time complexity is O(nlogn) could replace sort and put in (, keep="first") into drop dupl
+# making time complexity O(n)
 def delete_duplicate_emails(person: pd.DataFrame) -> None:
 
     person.sort_values(["id"], inplace = True)
