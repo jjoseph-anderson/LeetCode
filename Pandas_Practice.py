@@ -305,4 +305,12 @@ def rearrange_products_table(products: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-print(rearrange_products_table(products))
+# print(rearrange_products_table(products))
+
+#### 1741) Find Total Time Spent by Each Employee
+data = { "emp_id": [1, 1, 1, 2, 2],
+         "event_day": ["2020-11-28", "2020-11-28", "2020-12-03", "2020-11-28", "2020-12-09"],
+         "in_time": [4, 55, 1, 3, 47],
+         "out_time": [32, 200, 42, 33, 74] }
+
+employees = pd.DataFrame(data)
