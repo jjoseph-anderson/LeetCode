@@ -314,3 +314,13 @@ data = { "emp_id": [1, 1, 1, 2, 2],
          "out_time": [32, 200, 42, 33, 74] }
 
 employees = pd.DataFrame(data)
+
+def total_time(employees: pd.DataFrame) -> pd.DataFrame:
+    df = employees.groupby(by = ["event_day","emp_id"], as_index=False).sum()
+    df['total_time'] = df['out_time'] - df['in_time']
+    df = df[['event_day','emp_id','total_time']]
+    df = df.rename(columns = {'event_day': 'day'})
+
+    return df.sort_values('emp_id')
+
+print(total_time(employees))
