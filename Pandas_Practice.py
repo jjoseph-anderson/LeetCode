@@ -386,4 +386,11 @@ def find_classes(courses: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-print(find_classes(courses))
+# print(find_classes(courses))
+
+#### 586) Customer Placing the Largest Number of Orders
+
+data = { 'order_number': [1, 2, 3, 4],
+         'customer_number': [1, 2, 3, 3] }
+
+orders = pd.DataFrame(data)
