@@ -394,3 +394,14 @@ data = { 'order_number': [1, 2, 3, 4],
          'customer_number': [1, 2, 3, 3] }
 
 orders = pd.DataFrame(data)
+
+def largest_orders(orders: pd.DataFrame) -> pd.DataFrame:
+    df = orders.groupby(by = 'customer_number', as_index = False).count()
+
+    df = df[df.order_number == max(df.order_number)]
+
+    df = df[['customer_number']]
+
+    return df
+
+print(largest_orders(orders))
