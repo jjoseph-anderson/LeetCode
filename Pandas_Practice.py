@@ -412,3 +412,12 @@ data = { 'sell_date': [ '2020-05-30', '2020-06-01', '2020-06-02', '2020-05-30', 
          'product': [ 'Headphone', 'Pencil', 'Mask', 'Basketball', 'Bible', 'Mask', 'T-Shirt' ] }
 
 activities = pd.DataFrame(data)
+
+def categorize_products(activities: pd.DataFrame) -> pd.DataFrame:
+    df = (activities.drop_duplicates().groupby('sell_date')['product'].agg(num_sold = 'count',products = list).reset_index())
+
+    df.products = df.products.apply(lambda x: ','.join(sorted(x)))
+
+    return df
+
+print(categorize_products(activities))
