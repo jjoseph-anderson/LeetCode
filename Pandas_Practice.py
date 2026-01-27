@@ -420,4 +420,13 @@ def categorize_products(activities: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-print(categorize_products(activities))
+# print(categorize_products(activities))
+
+##### 1693) Daily Leads and Partners
+
+data = { 'date_id': [ '2020-12-8', '2020-12-8', '2020-12-8', '2020-12-7', '2020-12-7', '2020-12-8', '2020-12-8', '2020-12-7', '2020-12-7', '2020-12-7' ],
+         'make_name': [ 'toyota', 'toyota', 'toyota', 'toyota', 'toyota', 'honda', 'honda', 'honda', 'honda', 'honda' ],
+         'lead_id': [ 0, 1, 1, 0, 1, 1, 2, 0, 1, 2 ],
+         'partner_id': [ 1, 0, 2, 1, 0, 2, 1, 1, 2, 1 ] }
+
+daily_sales = pd.DataFrame(data)
