@@ -438,4 +438,11 @@ def daily_leads_and_partners(daily_sales: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-print(daily_leads_and_partners(daily_sales))
+# print(daily_leads_and_partners(daily_sales))
+
+#### 1050) Actors and Directors Who Cooperated At Least Three Times
+
+actor_director = pd.DataFrame({ "actor_id": [1, 1, 1, 1, 1, 2, 2],
+                    "director_id":[1, 1, 1, 2, 2, 1, 1],
+                    "timestamp": [0, 1, 2, 3, 4, 5, 6] })
+
