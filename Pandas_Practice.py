@@ -453,5 +453,12 @@ def actors_and_directors(actor_director: pd.DataFrame) -> pd.DataFrame:
 
     return df[['actor_id', 'director_id']]
 
-print(actors_and_directors(actor_director))
+#print(actors_and_directors(actor_director))
 
+#### 1378) Replace Employee ID With The Unique Identifier
+
+employees = pd.DataFrame({ "id": [1, 7, 11, 90, 3],
+                           "name": ["Alice", "Bob", "Meir", "Winston", "Jonathan"] })
+
+employee_uni = pd.DataFrame({ "id": [3, 11, 90],
+                              "unique_id": [1, 2, 3] })
