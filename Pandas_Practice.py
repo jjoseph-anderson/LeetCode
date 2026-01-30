@@ -468,5 +468,30 @@ def replace_employee_id(employees: pd.DataFrame, employee_uni: pd.DataFrame) -> 
 
     return df[['unique_id', 'name']]
 
-print(replace_employee_id(employees, employee_uni))
+#print(replace_employee_id(employees, employee_uni))
 
+#### 1280) Students and Examinations
+
+students = pd.DataFrame({ "student_id": [1, 2, 13, 6],
+                          "student_name": ["Alice", "Bob", "John", "Alex"] })
+
+subjects = pd.DataFrame({ "subject_name": ["Math", "Physics", "Programming"] })
+
+examinations = pd.DataFrame({ "student_id": [1, 1, 1, 2, 1, 13, 13, 13, 13, 2, 2],
+                              "subject_name": [ "Math", "Physics", "Programming", "Programming", "Physics", "Math", "Math", "Programming", "Physics", "Math", "Math" ] })
+
+def students_and_examinations(students: pd.DataFrame, subjects: pd.DataFrame,
+                              examinations: pd.DataFrame) -> pd.DataFrame:
+    full = students.assign(key=1).merge(subjects.assign(key=1), on="key").drop("key", axis=1)
+
+    exam_counts = (examinations.groupby(["student_id", "subject_name"], as_index=False).size().rename(
+        columns={"size": "attended_exams"}))
+
+    df = full.merge(exam_counts, on=["student_id", "subject_name"], how="left")
+
+    df["attended_exams"] = df["attended_exams"].fillna(0).astype(int)
+    df = df.sort_values(['student_id', 'subject_name'])
+
+    return df
+
+print(students_and_examinations(students, subjects, examinations))
