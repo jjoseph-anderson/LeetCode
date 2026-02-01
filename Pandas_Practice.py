@@ -494,4 +494,7 @@ def students_and_examinations(students: pd.DataFrame, subjects: pd.DataFrame,
 
     return df
 
-print(students_and_examinations(students, subjects, examinations))
+## print(students_and_examinations(students, subjects, examinations))
+
+#### 607) Sales Person
+
