@@ -498,3 +498,43 @@ def students_and_examinations(students: pd.DataFrame, subjects: pd.DataFrame,
 
 #### 607) Sales Person
 
+sales_person = pd.DataFrame({
+    "sales_id": [1, 2, 3, 4, 5],
+    "name": ["John", "Amy", "Mark", "Pam", "Alex"],
+    "salary": [100000, 12000, 65000, 25000, 5000],
+    "commission_rate": [6, 5, 12, 25, 10],
+    "hire_date": ["4/1/2006", "5/1/2010", "12/25/2008", "1/1/2005", "2/3/2007"]
+})
+
+# Company table
+company = pd.DataFrame({
+    "com_id": [1, 2, 3, 4],
+    "name": ["RED", "ORANGE", "YELLOW", "GREEN"],
+    "city": ["Boston", "New York", "Boston", "Austin"]
+})
+
+# Orders table
+orders = pd.DataFrame({
+    "order_id": [1, 2, 3, 4],
+    "order_date": ["1/1/2014", "2/1/2014", "3/1/2014", "4/1/2014"],
+    "com_id": [3, 1, 1, 1],
+    "sales_id": [4, 5, 1, 4],
+    "amount": [10000, 5000, 50000, 25000]
+})
+
+def sales_person(sales_person: pd.DataFrame, company: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+    df1 = pd.merge(sales_person, orders, on='sales_id', how='left')
+
+    df = pd.merge(df1, company, on='com_id', how = 'left')
+
+    mask = df["name_x"].isin(df.loc[df['name_y'] == "RED", "name_x"])
+
+    df = df[~mask]
+
+    df = df.drop_duplicates('name_x')
+
+    df = df.rename(columns = {'name_x':'name'})
+
+    return df[['name']]
+
+print(sales_person(sales_person, company, orders))
