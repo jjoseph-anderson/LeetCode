@@ -547,3 +547,16 @@ employees = pd.DataFrame({
     "department": ["A", "A", "A", "A", "A", "B"],
     "managerId": [None, 101, 101, 101, 101, 101]
 })
+
+def find_managers(employee: pd.DataFrame) -> pd.DataFrame:
+    group = employee.groupby(by = "managerId", as_index = False).count()
+    mask = (group.department >= 5)
+    higher = group[mask]
+
+    final = pd.merge(employee, higher, left_on = "id", right_on = "managerId", how = "inner")
+
+    final = final.rename(columns = {'name_x':'name'})
+
+    return final[['name']]
+
+print(find_managers(employees))
