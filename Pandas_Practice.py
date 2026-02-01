@@ -537,4 +537,13 @@ def sales_person(sales_person: pd.DataFrame, company: pd.DataFrame, orders: pd.D
 
     return df[['name']]
 
-print(sales_person(sales_person, company, orders))
+# print(sales_person(sales_person, company, orders))
+
+#### 570) Managers with at Least 5 Direct Reports
+
+employees = pd.DataFrame({
+    "id": [101, 102, 103, 104, 105, 106],
+    "name": ["John", "Dan", "James", "Amy", "Anne", "Ron"],
+    "department": ["A", "A", "A", "A", "A", "B"],
+    "managerId": [None, 101, 101, 101, 101, 101]
+})
