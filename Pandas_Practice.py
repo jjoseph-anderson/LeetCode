@@ -622,11 +622,10 @@ def find_employees(employee: pd.DataFrame) -> pd.DataFrame:
     df = employee.merge(employee, left_on='managerId', right_on='id', how='left', suffixes = ("", "_mgr"))
 
     mask = (df.salary > df.salary_mgr)
-
     df = df[mask]
-
     df = df[['name']]
-
     df = df.rename(columns = {'name':'Employee'})
+
+    # can satacl columns like df = df[['name']].rename(columns = {'name':'Employee'})
 
     return df
