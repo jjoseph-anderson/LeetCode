@@ -613,8 +613,20 @@ def consecutive_numbers(logs: pd.DataFrame) -> pd.DataFrame:
 
 #### 181) Employees Earning More Than Their Managers
 
-employees = pd.DataFrame({ "id": [1, 2, 3, 4],
+employee = pd.DataFrame({ "id": [1, 2, 3, 4],
                            "name": ["Joe", "Henry", "Sam", "Max"],
                            "salary": [70000, 80000, 60000, 90000],
                            "managerId": [3, 4, None, None]})
 
+def find_employees(employee: pd.DataFrame) -> pd.DataFrame:
+    df = employee.merge(employee, left_on='managerId', right_on='id', how='left', suffixes = ("", "_mgr"))
+
+    mask = (df.salary > df.salary_mgr)
+
+    df = df[mask]
+
+    df = df[['name']]
+
+    df = df.rename(columns = {'name':'Employee'})
+
+    return df
