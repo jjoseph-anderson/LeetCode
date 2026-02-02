@@ -594,6 +594,7 @@ logs = pd.DataFrame({
     "num": [1,1,1,2,1,2,2]
 })
 
+# time complexity is O(n)
 def consecutive_numbers(logs: pd.DataFrame) -> pd.DataFrame:
     repeated_3 = []
     for i in range(len(logs.num)-2):
