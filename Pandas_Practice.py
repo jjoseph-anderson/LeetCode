@@ -559,4 +559,22 @@ def find_managers(employee: pd.DataFrame) -> pd.DataFrame:
 
     return final[['name']]
 
-print(find_managers(employees))
+# print(find_managers(employees))
+
+#### 175) Combine Two Tables
+
+import pandas as pd
+
+person = pd.DataFrame({
+    "personId": [1, 2],
+    "lastName": ["Wang", "Alice"],
+    "firstName": ["Allen", "Bob"]
+})
+
+address = pd.DataFrame({
+    "addressId": [1, 2],
+    "personId": [2, 3],
+    "city": ["New York City", "Leetcode"],
+    "state": ["New York", "California"]
+})
+
