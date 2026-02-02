@@ -594,3 +594,20 @@ logs = pd.DataFrame({
     "num": [1,1,1,2,1,2,2]
 })
 
+def consecutive_numbers(logs: pd.DataFrame) -> pd.DataFrame:
+    repeated_3 = []
+    for i in range(len(logs.num)-2):
+        if logs.num[i] == logs.num[i+1] == logs.num[i+2]:
+            repeated_3.append(i)
+
+    df = logs.iloc[repeated_3]
+
+    df = df.rename(columns = {'num':'ConsecutiveNums'})
+
+    df = df[['ConsecutiveNums']]
+
+    df = df.drop_duplicates()
+
+    return df
+
+
