@@ -611,4 +611,10 @@ def consecutive_numbers(logs: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
+#### 181) Employees Earning More Than Their Managers
+
+employees = pd.DataFrame({ "id": [1, 2, 3, 4],
+                           "name": ["Joe", "Henry", "Sam", "Max"],
+                           "salary": [70000, 80000, 60000, 90000],
+                           "managerId": [3, 4, None, None]})
 
