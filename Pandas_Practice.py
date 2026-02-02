@@ -585,4 +585,12 @@ def combine_two_tables(person: pd.DataFrame, address: pd.DataFrame) -> pd.DataFr
 
     return df
 
-print(combine_two_tables(person, address))
+# print(combine_two_tables(person, address))
+
+#### 180) Consecutive Numbers
+
+logs = pd.DataFrame({
+    "id":  [1,2,3,4,5,6,7],
+    "num": [1,1,1,2,1,2,2]
+})
+
