@@ -632,8 +632,20 @@ def find_employees(employee: pd.DataFrame) -> pd.DataFrame:
 
 #### 182) Duplicate Emails
 
-df = pd.DataFrame({
+person = pd.DataFrame({
     "id": [1, 2, 3],
     "email": ["a@b.com", "c@d.com", "a@b.com"]
 })
 
+# could brute force it by using a nested for loop O(n^2)
+
+def duplicate_emails(person: pd.DataFrame) -> pd.DataFrame:
+    mask = person.duplicated(['email'])
+
+    df = person[mask]
+
+    df = df[['email']].rename(columns={'email': 'Email'})
+
+    return df.drop_duplicates()
+
+print(duplicate_emails(person))
