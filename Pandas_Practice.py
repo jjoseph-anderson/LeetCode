@@ -648,4 +648,20 @@ def duplicate_emails(person: pd.DataFrame) -> pd.DataFrame:
 
     return df.drop_duplicates()
 
-print(duplicate_emails(person))
+# print(duplicate_emails(person))
+
+##### 185) Department Top Three Salaries
+
+employee = pd.DataFrame({
+    "id": [1, 2, 3, 4, 5, 6, 7],
+    "name": ["Joe", "Henry", "Sam", "Max", "Janet", "Randy", "Will"],
+    "salary": [85000, 80000, 60000, 90000, 69000, 85000, 70000],
+    "departmentId": [1, 2, 3, 1, 1, 1, 1]
+})
+
+employee = pd.DataFrame({
+    "id": [1, 2],
+    "name": ["IT", "Sales"]
+})
+
+
