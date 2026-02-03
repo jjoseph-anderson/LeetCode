@@ -629,3 +629,11 @@ def find_employees(employee: pd.DataFrame) -> pd.DataFrame:
     # can satacl columns like df = df[['name']].rename(columns = {'name':'Employee'})
 
     return df
+
+#### 182) Duplicate Emails
+
+df = pd.DataFrame({
+    "id": [1, 2, 3],
+    "email": ["a@b.com", "c@d.com", "a@b.com"]
+})
+
