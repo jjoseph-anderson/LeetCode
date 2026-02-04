@@ -692,3 +692,29 @@ def rising_temperature(weather: pd.DataFrame) -> pd.DataFrame:
                 ids.append(weather.loc[i+1, 'id'])
 
     return pd.DataFrame({'id': ids})
+
+#### 262) Trips and Users
+
+trips = pd.DataFrame({
+    "id": [1,2,3,4,5,6,7,8,9,10],
+    "client_id": [1,2,3,4,1,2,3,2,3,4],
+    "driver_id": [10,11,12,13,10,11,12,12,10,13],
+    "city_id": [1,1,6,6,1,6,12,12,12,12],
+    "status": [
+        "completed", "cancelled_by_driver", "completed", "cancelled_by_client",
+        "completed", "completed", "completed", "completed", "completed", "cancelled_by_driver"
+    ],
+    "request_at": [
+        "2013-10-01","2013-10-01","2013-10-01","2013-10-01",
+        "2013-10-02","2013-10-02","2013-10-02",
+        "2013-10-03","2013-10-03","2013-10-03"
+    ]
+})
+
+trips["request_at"] = pd.to_datetime(trips["request_at"])
+
+users = pd.DataFrame({
+    "users_id": [1,2,3,4,10,11,12,13],
+    "banned": ["No","Yes","No","No","No","No","No","No"],
+    "role": ["client","client","client","client","driver","driver","driver","driver"]
+})
