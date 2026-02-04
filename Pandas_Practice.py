@@ -672,3 +672,11 @@ def top_three_salaries(employee: pd.DataFrame, department: pd.DataFrame) -> pd.D
     result = df[df['rnk'] <= 3][['name_dept', 'name', 'salary']]
     result.columns = ['Department', 'Employee', 'Salary']
     return result
+
+##### 197) Rising Temperature
+
+weather = pd.DataFrame({
+    "id": [1, 2, 3, 4],
+    "recordDate": ["2015-01-01", "2015-01-02", "2015-01-03", "2015-01-04"],
+    "temperature": [10, 25, 20, 30]
+})
