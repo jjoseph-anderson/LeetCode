@@ -680,3 +680,15 @@ weather = pd.DataFrame({
     "recordDate": ["2015-01-01", "2015-01-02", "2015-01-03", "2015-01-04"],
     "temperature": [10, 25, 20, 30]
 })
+
+def rising_temperature(weather: pd.DataFrame) -> pd.DataFrame:
+    weather = weather.sort_values('recordDate').reset_index(drop=True)
+
+    ids = []
+    for i in range(len(weather) - 1):
+        next_day = weather.loc[i, 'recordDate'] + pd.Timedelta(days=1)
+        if weather.loc[i+1, 'recordDate'] == next_day:
+            if weather.loc[i, 'temperature'] < weather.loc[i+1, 'temperature']:
+                ids.append(weather.loc[i+1, 'id'])
+
+    return pd.DataFrame({'id': ids})
