@@ -718,3 +718,39 @@ users = pd.DataFrame({
     "banned": ["No","Yes","No","No","No","No","No","No"],
     "role": ["client","client","client","client","driver","driver","driver","driver"]
 })
+
+import pandas as pd
+
+
+def trips_and_users(trips: pd.DataFrame, users: pd.DataFrame) -> pd.DataFrame:
+    trips["request_at"] = pd.to_datetime(trips["request_at"])
+    in_between_mask = ((trips.request_at >= pd.to_datetime("2013-10-01")) &
+                       (trips.request_at <= pd.to_datetime("2013-10-03")))
+
+    if in_between_mask.any():
+
+        mask = (users.role == "client")
+        clients = users[mask]
+
+        merged1 = pd.merge(trips, clients, left_on="client_id", right_on="users_id", how="left")
+        mask = (users.role == "driver")
+        drivers = users[mask]
+
+        merged2 = pd.merge(merged1, drivers, left_on="driver_id", right_on="users_id", how="left",
+                           suffixes=("_client", "_driver"))
+        df = merged2.groupby(by="request_at").apply(
+            lambda x: ((x["status"].str.startswith("cancelled")) & (x["banned_client"] == "No")).sum() / x[
+                "banned_client"].str.startswith("No").sum()).rename("Cancellation Rate").reset_index()
+
+        # if len(df) <= 1:
+        #    return pd.DataFrame({"Day": [], "Cancellation Rate": []})
+
+        df = df.rename(columns={"request_at": "Day"})
+
+        df["Cancellation Rate"] = round(df["Cancellation Rate"], 2)
+
+        return df
+
+    else:
+        df = pd.DataFrame({"Day": [], "Cancellation Rate": []})
+        return df
