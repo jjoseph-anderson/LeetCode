@@ -754,3 +754,14 @@ def trips_and_users(trips: pd.DataFrame, users: pd.DataFrame) -> pd.DataFrame:
     else:
         df = pd.DataFrame({"Day": [], "Cancellation Rate": []})
         return df
+
+##### 577) Employee Bonus
+
+def employee_bonus(employee: pd.DataFrame, bonus: pd.DataFrame) -> pd.DataFrame:
+    df = employee.merge(bonus, on = "empId", how = "left")
+
+    mask = (df.bonus < 1000) | (pd.isnull(df.bonus))
+
+    df = df[mask][['name', 'bonus']]
+
+    return df
