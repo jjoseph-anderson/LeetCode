@@ -765,3 +765,12 @@ def employee_bonus(employee: pd.DataFrame, bonus: pd.DataFrame) -> pd.DataFrame:
     df = df[mask][['name', 'bonus']]
 
     return df
+
+##### 584) Find Customer Referee
+
+def find_customer_referee(customer: pd.DataFrame) -> pd.DataFrame:
+    mask = (customer.referee_id != 2) | (pd.isnull(customer.referee_id))
+
+    df = customer[mask][['name']]
+
+    return df
