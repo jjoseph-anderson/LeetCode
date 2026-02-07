@@ -774,3 +774,17 @@ def find_customer_referee(customer: pd.DataFrame) -> pd.DataFrame:
     df = customer[mask][['name']]
 
     return df
+
+#### 585) Investments in 2016
+
+def find_investments(insurance: pd.DataFrame) -> pd.DataFrame:
+    df = insurance
+
+    df = df[df.groupby(by="tiv_2015")['tiv_2016'].transform("count").gt(1) &
+    df.groupby(["lat", "lon"])["lat"].transform("count").eq(1)]
+
+    df = df[['tiv_2016']]
+
+    df = df.agg(total_tiv_2016=("tiv_2016", "sum"))
+
+    return round(df, 2)
