@@ -803,3 +803,13 @@ rides = pd.DataFrame({
     "distance": [120, 317, 222, 100, 312, 230]
 })
 
+def top_travellers(users: pd.DataFrame, rides: pd.DataFrame) -> pd.DataFrame:
+    df = users.merge(rides, left_on = "id", right_on = "user_id", how = "left").fillna(0)
+
+    df = df.groupby(by = ["id_x", "name"], as_index = False)['distance'].sum()
+
+    df = df.rename(columns = {"distance": "travelled_distance"})[['name', 'travelled_distance']]
+
+    return df.sort_values(['travelled_distance', 'name'], ascending = [False, True])
+
+print(top_travellers(users, rides))
