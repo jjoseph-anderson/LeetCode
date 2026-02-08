@@ -788,3 +788,18 @@ def find_investments(insurance: pd.DataFrame) -> pd.DataFrame:
     df = df.agg(total_tiv_2016=("tiv_2016", "sum"))
 
     return round(df, 2)
+
+
+#### 1407) Top Travellers
+
+users = pd.DataFrame({
+    "id": [1, 2, 3, 19],
+    "name": ["Alice", "Bob", "Alex", "Alice"]
+})
+
+rides = pd.DataFrame({
+    "id": [1, 2, 3, 4, 5, 9],
+    "user_id": [1, 2, 3, 7, 13, 7],
+    "distance": [120, 317, 222, 100, 312, 230]
+})
+
