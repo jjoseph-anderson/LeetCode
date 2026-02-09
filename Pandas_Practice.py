@@ -813,3 +813,25 @@ def top_travellers(users: pd.DataFrame, rides: pd.DataFrame) -> pd.DataFrame:
     return df.sort_values(['travelled_distance', 'name'], ascending = [False, True])
 
 ### print(top_travellers(users, rides))
+
+###### 619. Biggest Single Number
+
+my_numbers = pd.DataFrame({
+    "num": [8, 8, 3, 3, 1, 4, 5, 6]
+})
+
+
+def biggest_single_number(my_numbers: pd.DataFrame) -> pd.DataFrame:
+    df = my_numbers.groupby(by="num", as_index=False).size()
+
+    mask = (df['size'] == 1)
+
+    if mask.any() == False:
+        return pd.DataFrame({'num': [None]})
+
+    else:
+        df = df[mask][['num']]
+        maximum = max(df.num, default=0)
+        mask2 = (df.num == maximum)
+
+        return df[mask2]
