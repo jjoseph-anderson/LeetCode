@@ -835,3 +835,28 @@ def biggest_single_number(my_numbers: pd.DataFrame) -> pd.DataFrame:
         mask2 = (df.num == maximum)
 
         return df[mask2]
+
+##### 1341. Movie Rating
+
+# Movies table
+movies = pd.DataFrame({
+    "movie_id": [1, 2, 3],
+    "title": ["Avengers", "Frozen 2", "Joker"]
+})
+
+# Users table
+users = pd.DataFrame({
+    "user_id": [1, 2, 3, 4],
+    "name": ["Daniel", "Monica", "Maria", "James"]
+})
+
+# MovieRating table
+ratings = pd.DataFrame({
+    "movie_id": [1,1,1,1,2,2,3,3,3],
+    "user_id":  [1,2,3,4,1,2,1,2,3],
+    "rating":   [3,4,2,1,5,2,3,2,4],
+    "created_at": pd.to_datetime([
+        "2020-01-12","2020-02-11","2020-02-12","2020-01-01",
+        "2020-02-17","2020-02-01","2020-03-01","2020-02-22","2020-02-25"
+    ])
+})
