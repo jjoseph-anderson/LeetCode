@@ -860,3 +860,31 @@ ratings = pd.DataFrame({
         "2020-02-17","2020-02-01","2020-03-01","2020-02-22","2020-02-25"
     ])
 })
+
+def movie_rating(movies: pd.DataFrame, users: pd.DataFrame, movie_rating: pd.DataFrame) -> pd.DataFrame:
+    join1 = movie_rating.merge(movies, on = "movie_id", how = "left")
+    join2 = join1.merge(users, on = "user_id", how = "left")
+
+    # Greatest number of movies
+    counted = join2.groupby(by = "name", as_index = False).size().sort_values(['size','name'], ascending = [False, True]).reset_index()
+
+    # Highest average
+    mask = join2['created_at'].dt.to_period("M") == "2020-02"
+    feb = join2[mask]
+    avg = feb.groupby(by = "title", as_index = False)['rating'].mean().sort_values(['rating', 'title'], ascending = [False, True]).reset_index()
+
+    df = pd.DataFrame({"results": [counted['name'][0], avg['title'][0]]})
+
+    return df
+
+##### 620) Not Boring Movies
+
+def not_boring_movies(cinema: pd.DataFrame) -> pd.DataFrame:
+    mask_bor = (cinema.description != "boring")
+    mask_odd = (cinema.id % 2 == 1)
+
+    df = cinema[mask_bor & mask_odd]
+
+    df = df.sort_values('rating', ascending=False)
+
+    return df
