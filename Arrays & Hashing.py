@@ -663,5 +663,17 @@ class Solution:
 
         return ans
 
-num = 5
-print(Solution().fizzBuzz(num))
+# num = 5
+# print(Solution().fizzBuzz(num))
+
+### 9) Palindrome Number
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0:
+            return False
+
+        x_str = str(x)
+        reverse = str(x)[::-1]
+
+        return reverse == x_str
