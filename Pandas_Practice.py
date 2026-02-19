@@ -888,3 +888,18 @@ def not_boring_movies(cinema: pd.DataFrame) -> pd.DataFrame:
     df = df.sort_values('rating', ascending=False)
 
     return df
+
+### 610 Triangle Judgement
+
+def triangle_judgement(triangle: pd.DataFrame) -> pd.DataFrame:
+    triangle['triangle'] = 'No'
+
+    for i in range(len(triangle)):
+        if (
+            triangle.loc[i, 'x'] + triangle.loc[i, 'y'] > triangle.loc[i, 'z'] and
+            triangle.loc[i, 'x'] + triangle.loc[i, 'z'] > triangle.loc[i, 'y'] and
+            triangle.loc[i, 'y'] + triangle.loc[i, 'z'] > triangle.loc[i, 'x']
+        ):
+            triangle.loc[i, 'triangle'] = 'Yes'
+
+    return triangle
