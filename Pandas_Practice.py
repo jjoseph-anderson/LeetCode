@@ -903,3 +903,5 @@ def triangle_judgement(triangle: pd.DataFrame) -> pd.DataFrame:
             triangle.loc[i, 'triangle'] = 'Yes'
 
     return triangle
+
+
