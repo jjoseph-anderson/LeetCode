@@ -931,3 +931,4 @@ def gameplay_analysis(activity: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame({"fraction": [round(log_back/tot_players, 2)]})
 
 print(gameplay_analysis(activity))
+
