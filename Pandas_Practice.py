@@ -904,4 +904,30 @@ def triangle_judgement(triangle: pd.DataFrame) -> pd.DataFrame:
 
     return triangle
 
+##### 550) Game Play Analysis IV
 
+activity = pd.DataFrame({
+    "player_id": [1, 1, 2, 3, 3],
+    "device_id": [2, 2, 3, 1, 4],
+    "event_date": [
+        "2016-03-01",
+        "2016-03-02",
+        "2017-06-25",
+        "2016-03-02",
+        "2018-07-03"
+    ],
+    "games_played": [5, 6, 1, 0, 5]
+})
+activity["event_date"] = pd.to_datetime(activity["event_date"])
+
+def gameplay_analysis(activity: pd.DataFrame) -> pd.DataFrame:
+    tot_players = activity.player_id.nunique()
+
+    activity["start_date"] = activity.groupby(by = "player_id", as_index = False)["event_date"].transform("min")
+    activity["diff"] = activity["event_date"] - activity["start_date"]
+    mask = (activity["diff"] == "1 days")
+    log_back = activity[mask]["player_id"].nunique()
+
+    return pd.DataFrame({"fraction": [round(log_back/tot_players, 2)]})
+
+print(gameplay_analysis(activity))
