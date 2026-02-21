@@ -930,5 +930,17 @@ def gameplay_analysis(activity: pd.DataFrame) -> pd.DataFrame:
 
     return pd.DataFrame({"fraction": [round(log_back/tot_players, 2)]})
 
-print(gameplay_analysis(activity))
+### print(gameplay_analysis(activity))
 
+#### 1327. List the Products Ordered in a Period
+
+def list_products(products: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+    mask_feb = orders['order_date'].dt.to_period("M") == "2020-02"
+    df = orders[mask_feb].groupby(by = "product_id", as_index = False)['unit'].sum()
+
+    mask_100 = (df.unit >= 100)
+    df = df[mask_100]
+
+    df = df.merge(products , on = "product_id", how = "left")
+
+    return df[['product_name', 'unit']]
