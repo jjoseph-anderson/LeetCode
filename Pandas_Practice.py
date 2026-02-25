@@ -953,3 +953,5 @@ def sales_analysis(sales: pd.DataFrame, product: pd.DataFrame) -> pd.DataFrame:
     df = df[['product_name', 'year', 'price']]
 
     return df
+
+### 1075. Project Employees I
