@@ -944,3 +944,12 @@ def list_products(products: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
     df = df.merge(products , on = "product_id", how = "left")
 
     return df[['product_name', 'unit']]
+
+#### 1068. Product Sales Analysis I
+
+def sales_analysis(sales: pd.DataFrame, product: pd.DataFrame) -> pd.DataFrame:
+    df = sales.merge(product, on = "product_id", how = "left")
+
+    df = df[['product_name', 'year', 'price']]
+
+    return df
