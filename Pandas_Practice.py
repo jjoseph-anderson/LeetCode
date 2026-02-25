@@ -955,3 +955,14 @@ def sales_analysis(sales: pd.DataFrame, product: pd.DataFrame) -> pd.DataFrame:
     return df
 
 ### 1075. Project Employees I
+
+def project_employees_i(project: pd.DataFrame, employee: pd.DataFrame) -> pd.DataFrame:
+    df = project.merge(employee, on = "employee_id", how = "left")
+
+    df = df.groupby(by = "project_id", as_index = False)['experience_years'].mean()
+
+    df = df.rename(columns = {"experience_years": "average_years"})
+
+    df['average_years'] = round(df['average_years'], 2)
+
+    return df
